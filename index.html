@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Surprise for You ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffe6e6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        #game-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            z-index: 10;
+            position: relative;
+        }
+
+        h1 { color: #d63384; }
+        p { color: #555; font-size: 1.1rem; line-height: 1.6; }
+
+        .btn {
+            background: #d63384;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 20px;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover { transform: scale(1.05); background: #b82b6f; }
+
+        #message-area {
+            display: none;
+            text-align: left;
+            max-height: 450px;
+            overflow-y: auto;
+            padding: 15px;
+            border-top: 2px solid #ffe6e6;
+        }
+
+        .heart {
+            position: fixed;
+            color: #ff4d4d;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: float 5s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            width: 80%;
+            border: 2px solid #ffb3b3;
+            border-radius: 10px;
+            margin-top: 15px;
+            outline: none;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- This is the audio player -->
+    <audio id="loveSong">
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div id="game-container">
+        <div id="riddle-section">
+            <h1>Hey Gorgeous... ❤️</h1>
+            <p>I have a secret for you, but you have to solve this first: </p>
+            <p><strong>"I can be shared but never bought, I can be felt but never caught. I grow when given away. What am I?"</strong></p>
+            <input type="text" id="answer" placeholder="Your answer...">
+            <br>
+            <button class="btn" onclick="checkRiddle()">Unlock My Heart</button>
+        </div>
+
+        <div id="message-area">
+            <h2 style="color: #d63384; text-align: center;">For My Everything...</h2>
+            <p style="text-align: center;">•🛐🥺....🪐☁︎☁︎☁︎☁︎☁︎<br>•🧸🤎😭</p>
+            <p id="the-paragraph">
+                I don't even know where to start😔❤ There's so much I could say about you🥺❤💐 there's so many great things about you that I love so much❤🦋 you don't even understand and I just can't explain it to you the amount of love I have for you 🥰🥺! We've been through the good times and the bad times in our relationship but you've always chosen to Stay with me through it all 🥺🥺! I don't know how God gave me such a perfect galfriend 🫀. people normally say "there isn't a perfect person in this world" haha but I don't think that's true and I'll never because I know a person that's perfect just the way there are and that's you ml, muh bby, my everthing 😩❤️you've supported me in such a way no one has ever before in conclusion I'm thankful for having you in my life 🥺❤️I know I'm always saying this and stuff but I truly mean every single thing I've written in this paragraph❤😻I wish for the both of us to stay together till we grow old in one another's arms❤🌍 & for us to have a million babies that will look just like you I wish the years 🥺we've been dating could go up to 35 years in marriage❤💍🏆🌍<br><br>
+                I could type a paragraph that goes on and on and on but honestly you hear it almost everyday I won’t make you read it too 😂 I will say tho I have loved you since the day I first laid eyes on you and I promise to continue loving you for as long as you will let me. You’ve shown me repeatedly that you will move heaven an earth for me and I couldn’t be more grateful and blessed to say that I have found my soulmate with you❤💍. I love you more than I could ever physically express or say❤🥺. Thank you for being my best friend for the past few weeks ❤🦋but an even bigger thank you for being my biggest supporter❤💍💐, my shoulder to cry on❤😭, my rock🌍, and last but not least thank you for being the love of my life for the past years🫀❤🥺😭
+            </p>
+            <p style="text-align: right; font-weight: bold; color: #d63384; padding-bottom: 20px;">- Love, Jay Jay</p>
+        </div>
+    </div>
+
+    <script>
+        function checkRiddle() {
+            const answer = document.getElementById('answer').value.toLowerCase().trim();
+            const song = document.getElementById('loveSong');
+            
+            if (answer === 'love') {
+                // Reveal message
+                document.getElementById('riddle-section').style.display = 'none';
+                document.getElementById('message-area').style.display = 'block';
+                
+                // Play Ali Gatie
+                song.play();
+                
+                // Extra visual celebration
+                spawnHeartsFast();
+            } else {
+                alert("Not quite! Hint: It's the one thing I have for you more than anything else.");
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 400);
+
+        function spawnHeartsFast() {
+            for(let i=0; i<30; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
